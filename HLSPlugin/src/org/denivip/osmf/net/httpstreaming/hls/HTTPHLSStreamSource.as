@@ -26,13 +26,14 @@ package org.denivip.osmf.net.httpstreaming.hls
 	import flash.events.IEventDispatcher;
 	import flash.utils.ByteArray;
 	import flash.utils.IDataInput;
-	
+
 	import org.denivip.osmf.events.HTTPHLSStreamingEvent;
+       import org.denivip.osmf.net.httpstreaming.hls.BemTVDownloader;
 	import org.osmf.events.DVRStreamInfoEvent;
 	import org.osmf.events.HTTPStreamingEvent;
 	import org.osmf.events.HTTPStreamingIndexHandlerEvent;
 	import org.osmf.media.MediaResourceBase;
-	import org.osmf.net.httpstreaming.HTTPStreamDownloader;
+       import org.osmf.net.httpstreaming.HTTPStreamDownloader;
 	import org.osmf.net.httpstreaming.HTTPStreamHandlerQoSInfo;
 	import org.osmf.net.httpstreaming.HTTPStreamRequest;
 	import org.osmf.net.httpstreaming.HTTPStreamRequestKind;
@@ -457,9 +458,9 @@ package org.denivip.osmf.net.httpstreaming.hls
 							// then we use internal source to actually download the chunk
 							if (_downloader == null)
 							{
-								_downloader = new HTTPStreamDownloader();
+								_downloader = new BemTVDownloader();
 							}
-							
+
 							var downloaderMonitor:IEventDispatcher = _dispatcher;
 							if (_request.kind == HTTPStreamRequestKind.BEST_EFFORT_DOWNLOAD)
 							{
@@ -982,8 +983,8 @@ package org.denivip.osmf.net.httpstreaming.hls
 		private var _resource:MediaResourceBase = null;
 		
 		private var _qosInfo:HTTPStreamHandlerQoSInfo;
-		
-		private var _downloader:HTTPStreamDownloader = null;
+
+		private var _downloader:BemTVDownloader = null;
 		private var _request:HTTPStreamRequest = null;
 		
 		private var _indexHandler:HTTPStreamingIndexHandlerBase = null;
